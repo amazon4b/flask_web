@@ -15,5 +15,27 @@ def hello(name):
                                    "action":action,
                                    "sound":sound})
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        print(username, password)
+        return "Success"
+    elif request.method == 'GET':
+        return render_template('login.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        password = request.form.get('password')
+        print(username, password)
+        return email
+    elif request.method == 'GET':
+        return render_template('register.html')
+
 if __name__ == '__main__':
     app.run(debug=True, port = 5000)
