@@ -1,4 +1,5 @@
 from flask import Flask , render_template, request
+from data import Articles
 
 app = Flask(__name__)
 
@@ -36,6 +37,12 @@ def register():
         return email
     elif request.method == 'GET':
         return render_template('register.html')
+
+@app.route('/list', methods=['GET', 'POST'])
+def list():
+    results = Articles()
+    return render_template('list.html', list=results)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port = 5000)
